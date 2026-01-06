@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Formulir Pendaftaran</title>
+  <style>
+        :root {
+            --primary: #2c786c;
+            --secondary: #004445;
+            --accent: #f8b400;
+            --light: #faf5e4;
+            --dark: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f36af85a-6bb1-4ee5-9544-8cf7babf05e4.png') center/cover no-repeat;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .header-content {
+            margin: auto;
+            max-width: 800px;
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+        }
+
+        .logo img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0.5rem auto;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .schedule-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .schedule-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .schedule-time {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .schedule-time i {
+            margin-right: 0.5rem;
+        }
+
+        .schedule-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-desc {
+            color: #666;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-icons {
+            margin: 1rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 3rem 5%;
+            }
+        }
+        .clock {
+            font-size: 3rem;
+            font-weight: 300;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+            to { box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1); }
+        }
+    </style>
+</head>
+<body>
+  <nav>
+        <div class="logo">
+            <i class="fas fa-mosque" style="font-size: 2rem; color: var(--accent);"></i>
+        </div>
+        <ul>
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#schedule">Jadwal</a></li>
+            <li><a href="form.html">Pendaftaran</a></li>
+            <li><a href="form_login.html">Login</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e6f5d678-b5eb-4d83-9765-a1dcbf5783f8.png" alt="Logo Majelis Pengajian Al-Ikhlas dengan simbol masjid dan kitab suci" />
+            </div>
+            <div class="clock" id="clock"></div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // Jalankan sekali saat load
+    </script>
+            <p class="subtitle">"Menggapai ilmu yang bermanfaat untuk kebahagiaan dunia dan akhirat"</p>
+            <div>
+                <a href="#registration" class="btn">Daftar Sekarang</a>
+                <a href="#about" class="btn btn-outline">Pelajari Lebih Lanjut</a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="about">
+        <h2 class="section-title">Tentang Kami</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Majelis Pengajian Al-Ikhlas</h3>
+                <p>Majelis Pengajian Al-Ikhlas adalah sebuah komunitas yang fokus pada pembelajaran dan pengkajian agama Islam secara mendalam dengan metode yang mudah dipahami.</p>
+                <p>Dibimbing oleh ustadz-ustadz yang berpengalaman di bidangnya, kami berkomitmen untuk menyampaikan ilmu agama yang murni berdasarkan Al-Qur'an dan As-Sunnah.</p>
+                <p>Kegiatan kami mencakup kajian rutin, program tahsin, hafalan Qur'an, serta program pembinaan remaja muslim.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e5ad062a-8248-44a6-b34e-6cc63a8f7c9a.png" alt="Suasana pengajian dengan peserta duduk melingkar di masjid bersama ustadz yang sedang mengajar" />
+            </div>
+        </div>
+    </section>
+    <section id="schedule" style="background-color: #f5f5f5;">
+        <h2 class="section-title">Jadwal Pengajian</h2>
+        <div class="schedule">
+            <div class="schedule-item">
+                <div class="schedule-time"><i class="far fa-clock"></i> Setiap Sabtu, 08:00 - 10:00</div>
+                <h3 class="schedule-title">Kajian Aqidah</h3>
+                <p class="schedule-desc">Kajian dasar-dasar aqidah Islamiyah sesuai pemahaman salafus shalih.</p>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-time"><i class="far fa-clock"></i> Setiap Ahad, 09:00 - 11:00</div>
+                <h3 class="schedule-title">Tahsin & Tahfizh</h3>
+                <p class="schedule-desc">Program pembenahan bacaan Al-Qur'an dan hafalan juz 30.</p>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-time"><i class="far fa-clock"></i> Setiap Rabu, 16:00 - 18:00</div>
+                <h3 class="schedule-title">Pengajian Remaja</h3>
+                <p class="schedule-desc">Pembinaan agama khusus remaja dengan metode interaktif.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="registration">
+  <h2 class="section-title">Formulir Pendaftaran</h2>
+  <form action="proses_daftar.php" method="POST">
+    <label>Nama Lengkap:</label><br>
+    <input type="text" name="nama" required><br><br>
+    
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+    
+    <label>No.HP:</label><br>
+    <input type="text" name="no_hp"><br><br>
+    
+    <label>Alamat:</label><br>
+    <textarea name="alamat"></textarea><br><br>
+    
+    <label>Password:</label><br>
+    <input type="password" name="password" id="password" required><br><br>
+    
+    <label>Konfirmasi Password:</label><br>
+    <input type="password" name="confirm_password" id="confirm_password" required><br><br>
+
+     <label>Program yang diminati:</label><br>
+        <select name="program" required>
+        <option value="">-- Pilih Program --</option>
+        <option value="Kajian Aqidah">Kajian Aqidah</option>
+        <option value="Tahsin & Tahfizh">Tahsin & Tahfizh</option>
+        <option value="Pengajian Remaja">Pengajian Remaja</option>
+    </select><br><br>
+
+    <button type="submit" name="submit" class="btn" style="width: 100%;">Daftar</button>
+  </form>
+</section>
+
+    <section id="contact" style="background-color: var(--primary); color: white;">
+        <h2 class="section-title" style="color: white;">Kontak Kami</h2>
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <p><i class="fas fa-map-marker-alt"></i> Jl. Al-Ikhlas No. 123, Semarang, Jawa Tengah</p>
+            <p><i class="fas fa-phone"></i> 0812-3456-7890</p>
+            <p><i class="fas fa-envelope"></i> info@pengajianalikhlas.com</p>
+            
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>© 2025 Majelis Pengajian Al-Ikhlas. All Rights Reserved.</p>
+    </footer>
+<script>
+        
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
